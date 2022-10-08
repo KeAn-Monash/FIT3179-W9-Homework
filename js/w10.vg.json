@@ -1,0 +1,115 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "",
+    "height": 400,
+    "title": "World Happiness Score against GDP per capita in 2019",
+    "data": {
+        "url": "data/world_happiness_report_clean_2019.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "width": "container",
+    "params": [
+        {
+            "name": "continent_highlight",
+            "select": {
+                "type": "point",
+                "fields": ["Continent"]
+            },
+            "bind": "legend"
+        }
+    ],
+    "layer": [
+        {
+            "mark": "circle",
+            "encoding": {
+                "x": {
+                    "field": "GDP per capita",
+                    "type": "quantitative",
+                    "title": "GDP per capita"
+                },
+                "y": {
+                    "field": "Score",
+                    "type": "quantitative",
+                    "title": "World Happiness Score"
+                },
+                "color": {
+                    "field": "Continent",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Africa",
+                            "Asia",
+                            "Europe",
+                            "North America",
+                            "South America",
+                            "Oceania",
+                            "Others"
+                        ],
+                        "range": [
+                            "#4464AD",
+                            "#748AD1",
+                            "#A4B0F5",
+                            "#F58F29",
+                            "#7D4600",
+                            "#62584B",
+                            "#546170"
+                        ]
+                    }
+                },
+                "opacity": {
+                    "condition": {
+                        "param": "continent_highlight",
+                        "value": 0.6
+                    },
+                    "value": 0.2
+                },
+                "tooltip": [
+                    {
+                        "field": "Continent",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Country or region",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "GDP per capita",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "Score",
+                        "type": "quantitative"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 12,
+                "fontSize": 10
+            },
+            "encoding": {
+                "text": {
+                    "field": "Continent",
+                    "type": "nominal"
+                },
+                "color": {
+                    "value": "black"
+                },
+                "opacity": {
+                    "condition": {
+                        "test": "datum['Continent'] == 'Africa' == datum['Continent'] == 'Asia' == datum['Continent'] == 'Europe' == datum['Continent'] == 'North America' == datum['Continent'] == 'South America' == datum['Continent'] == 'Oceania' == datum['Continent'] == 'Others'",
+                        "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        }
+    ]
+    
+}

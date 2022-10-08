@@ -11,10 +11,18 @@
     <title>Week 9 Homework</title>
 </head>
 <body>
-    <div id="my_map"></div>
+    <div id="my_map" class="center"></div>
+    <div id="w10" class="center" style="padding-top: 5%"></div>
+    
     <script type="text/javascript">
         const my_map = "js/map_plot.vg.json";
+        const w10 = "js/w10.vg.json"
+
         vegaEmbed('#my_map', my_map).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        vegaEmbed('#w10', w10).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
     </script>

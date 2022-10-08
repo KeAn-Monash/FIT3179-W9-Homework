@@ -10,30 +10,32 @@
         }
     },
     "width": "container",
-    "params": [
-        {
-            "name": "continent_highlight",
-            "select": {
-                "type": "point",
-                "fields": ["Continent"]
-            },
-            "bind": "legend"
+    "encoding": {
+        "x": {
+            "field": "GDP per capita",
+            "type": "quantitative",
+            "title": "GDP per capita"
+        },
+        "y": {
+            "field": "Score",
+            "type": "quantitative",
+            "title": "World Happiness Score"
         }
-    ],
+    },
     "layer": [
         {
             "mark": "circle",
+            "params": [
+                {
+                    "name": "continent_highlight",
+                    "select": {
+                        "type": "point",
+                        "fields": ["Continent"]
+                    },
+                    "bind": "legend"
+                }
+            ],
             "encoding": {
-                "x": {
-                    "field": "GDP per capita",
-                    "type": "quantitative",
-                    "title": "GDP per capita"
-                },
-                "y": {
-                    "field": "Score",
-                    "type": "quantitative",
-                    "title": "World Happiness Score"
-                },
                 "color": {
                     "field": "Continent",
                     "type": "nominal",
@@ -88,10 +90,11 @@
         {
             "mark": {
                 "type": "text",
-                "align": "left",
+                "align": "center",
                 "baseline": "middle",
-                "dx": 12,
-                "fontSize": 10
+                "dx": -12,
+                "dy": -10,
+                "fontSize": 8
             },
             "encoding": {
                 "text": {
@@ -103,7 +106,7 @@
                 },
                 "opacity": {
                     "condition": {
-                        "test": "datum['Continent'] == 'Africa' == datum['Continent'] == 'Asia' == datum['Continent'] == 'Europe' == datum['Continent'] == 'North America' == datum['Continent'] == 'South America' == datum['Continent'] == 'Oceania' == datum['Continent'] == 'Others'",
+                        "test": "datum['GDP per capita'] >= 1",
                         "value": 1
                     },
                     "value": 0
